@@ -1,0 +1,61 @@
+// Boost libraries
+#include <boost/lambda/lambda.hpp>
+#include <boost/variant.hpp>
+#include <boost/multi_array.hpp>
+#include <boost/array.hpp>
+#include <boost/numeric/odeint.hpp>
+#include <boost/numeric/odeint/integrate/integrate.hpp>
+// Standard C++ libraries
+#include <iostream>
+#include <iterator>
+#include <algorithm>
+#include <cassert>
+// Modified libraries
+#include "simple.h"
+
+using namespace boost::numeric::odeint;
+
+int main () {
+
+  typedef boost::variant<int, const char*, std::string> my_var_t; // 
+  std::vector<my_var_t> some_values; 
+  std::vector<my_var_t>::iterator n_iter;
+  
+  some_values.push_back(10);
+  some_values.push_back("Hello There!");
+  some_values.push_back(std::string("Wow "));
+  std::string& s = boost::get<std::string>(some_values.back());
+
+  s += "That is great! \n";
+  std::cout << s;
+
+  for (n_iter = some_values.begin(); n_iter != some_values.end(); n_iter++) {
+    std::cout << *n_iter << std::endl;
+  }
+
+  // Looking at the boost multi_array example
+  // Create a 3D array that is 3 * 4 * 2
+  typedef boost::multi_array<double, 3> array_type;
+  typedef array_type::index index;
+  array_type A(boost::extents[3][4][2]);
+  
+  // Assign values to the elements
+  int values = 0;
+  for (index i = 0; i != 3; ++i) 
+    for (index j = 0; j != 4; ++j) 
+      for (index k = 0; k != 2; ++k) 
+	A[i][j][k] = values++;
+	     
+  
+  // ODEINT example
+
+  state_type x(2); // vector of size 2
+  x[0] = 1.0; // x = 1
+  x[1] = 0.0; // it's first derivative is 0.0 
+  size_t steps = integrate( harmonic_oscillator, x, 0.0, 10.0, 0.1 );
+  
+  
+	   
+  return 0;
+  
+}

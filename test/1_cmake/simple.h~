@@ -1,0 +1,18 @@
+#pragma once
+#include <iostream>
+#include <boost/array.hpp>
+#include <boost/numeric/odeint.hpp>
+#include <boost/numeric/odeint/integrate/integrate.hpp>
+
+typedef std::vector<double> state_type; // rename a vector of doubles
+
+const double gam = 0.15;
+
+//The rhs of x' = f(x)//
+
+void harmonic_oscillator(const state_type &x, state_type &dxdt, const double) {
+
+  dxdt[0] = x[1];
+  dxdt[1] = -x[0] - gam*x[1];
+}
+

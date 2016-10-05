@@ -1,0 +1,27 @@
+cmake_minimum_required (VERSION 2.6)
+project (simple)
+#add_library()
+# The version number
+#set (simple_VERSION_MAJOR 1)
+#set (simple_VERSION_MAJOR 0)
+
+
+# Configure a header file to pass some of the CMake settings
+# to the source code
+
+  # add the binary tree to the search path for include files
+  # so that we will find any header file
+
+  
+  set(Boost_USE_STATIC_LIBS ON)
+  set(Boost_USE_MULTITHREADED OFF)
+  set(Boost_USE_STATIC_RUNTIME OFF)
+  find_package(Boost 1.45.0 COMPONENTS lambda)
+  
+  if(Boost_FOUND)
+    include_directories(/usr/local/include/boost)
+    #    target_link_libraries(progname ${Boost_LIBRARIES})
+  endif()
+  
+  add_executable(Simple simple.cxx)
+    

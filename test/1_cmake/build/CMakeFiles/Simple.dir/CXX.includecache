@@ -1,0 +1,44 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/noh/Desktop/Program/C++/BOOST/1_cmake/simple.cxx
+boost/lambda/lambda.hpp
+-
+boost/variant.hpp
+-
+boost/multi_array.hpp
+-
+boost/array.hpp
+-
+boost/numeric/odeint.hpp
+-
+boost/numeric/odeint/integrate/integrate.hpp
+-
+iostream
+-
+iterator
+-
+algorithm
+-
+cassert
+-
+simple.h
+/home/noh/Desktop/Program/C++/BOOST/1_cmake/simple.h
+
+/home/noh/Desktop/Program/C++/BOOST/1_cmake/simple.h
+iostream
+-
+boost/array.hpp
+-
+vector
+-
+boost/numeric/odeint.hpp
+-
+boost/numeric/odeint/integrate/integrate.hpp
+-
+
